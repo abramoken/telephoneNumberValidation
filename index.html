@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Telephone Number Validation</title>
+
+	<script type="text/javascript">
+		/* 
+			^ denotes the beginning of the string.
+			(1\s?)? allows for “1” or “1 ” if there is one.
+			\d{n} checks for exactly n number of digits so \d{3} checks for three digits.
+			x|y checks for either x OR y so (\(\d{3}\)|\d{3}) checks for either three digits surrounded by parentheses, or three digits by themselves with no parentheses.
+			[\s\-]? checks for spaces or dashes between the groups of digits.
+			$ denotes the end of the string. In this case the beginning ^ and end of the string $ are used in the regex to prevent it from matching any longer string that might contain a valid phone number (eg. “s 555 555 5555 3”).
+			regex.test(str) to test if the string adheres to the regular expression, it returns true or false.
+		*/
+		function telephoneCheck() {
+			/* Target the id of the element from the input and get the value by assigning it to var text */
+			var text = document.getElementById("text1").value;
+   			var regex1 = /^([\s\+]?\d{1}\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
+   			var regex2 = /^([\s\+]?\d{2}\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
+   			var regex3 = /^([\s\+]?\d{3}\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
+   		//Tets if the inputted value is True or False 
+   			if(regex1.test(text)){
+   				document.getElementById("lab").innerHTML="True"; 
+   				document.getElementById("lab").style.visibility="visible";
+   				document.getElementById("lab").style.color="green";
+   			}else if (regex2.test(text)){
+   				document.getElementById("lab").innerHTML="True";
+   				document.getElementById("lab").style.visibility="visible";
+   				document.getElementById("lab").style.color="green";
+   			}else if (regex3.test(text)){
+   				document.getElementById("lab").innerHTML="True"; 
+   				document.getElementById("lab").style.visibility="visible";
+   				document.getElementById("lab").style.color="green";
+   			}else{
+   				document.getElementById("lab").innerHTML="False";
+   				document.getElementById("lab").style.visibility="visible";
+   				document.getElementById("lab").style.color="red";
+   			}
+		}
+	</script>
+	<style type="text/css">
+		body{
+			text-align: center;
+			background-color: #D3DDD3;
+		}
+		form{
+			text-align: center;
+			margin-top: 15%;
+		}
+		.button1{
+			border-radius: 5px;
+			width: 100px;
+			height: 50px;
+			color: black;
+  			border: 2px solid #4CAF50; 
+		}
+		input[type=text] {
+			 width: 20%;
+			 padding: 12px 20px;
+			 margin: 8px 0;
+			 box-sizing: border-box;
+			}
+	</style>
+</head>
+<body>
+
+<div>
+	<form>
+		<h1>Telephone Number Validation</h1>
+		<input id="text1" type="text" name="" placeholder="Tele Number (eg.777 777 7777)"><br>
+		<label id="lab" style="color: red; visibility: hidden;" >Invalid</label> <br>
+		<button class="button1" type="button" onclick="telephoneCheck()"><b>Validate</b></button>
+	</form>
+</div>
+</body>
+</html>
